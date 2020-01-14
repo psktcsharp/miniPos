@@ -5,8 +5,11 @@ const connectDb = require('./config/database')
 const app = express();
 //Enable cors 
 app.use(cors());
+//json request body parser
+app.use(express.json());
 //importing route files
 const cashiers = require('./routes/cashiers')
+
 
 const PORT = 8080;
 

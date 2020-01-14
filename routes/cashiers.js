@@ -1,9 +1,10 @@
 const express = require("express")
-const { getCashiers } = require("../controllers/cashiers")
+const { getCashiers,
+    createCashier } = require("../controllers/cashiers")
 
 const router = express.Router();
 router
     .route("/")
-    .get(getCashiers)
+    .get(getCashiers).post(createCashier)
 
 module.exports = router;

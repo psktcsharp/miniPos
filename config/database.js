@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 //connect to database
 const connectDb = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI, {
+        const conn = await mongoose.connect('mongodb://localhost/posDB', {
             useNewUrlParser: true,
             useCreateIndex: true,
             useFindAndModify: false,
