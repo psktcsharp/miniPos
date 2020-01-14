@@ -16,7 +16,11 @@ const ItemSchema = new mongoose.Schema({
     img: {
         type: String
     },
-    available: Boolean,
+    available: {
+        type: Boolean,
+        default: true
+    }
+    ,
     createdAt: {
         type: Date,
         default: Date.now

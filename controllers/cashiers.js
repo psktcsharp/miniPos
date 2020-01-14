@@ -65,3 +65,4 @@ exports.getCashier = async (req, res, next) => {
 
     }
 }
+

@@ -19,6 +19,7 @@ app.use(cookieParser());
 //importing route files
 const cashiers = require('./routes/cashiers')
 const auth = require('./routes/auth');
+const items = require('./routes/items')
 
 
 const PORT = 8080;
@@ -30,7 +31,7 @@ connectDb();
 //Mounting routers
 app.use('/api/v1/cashiers', cashiers)
 app.use('/api/v1/auth', auth);
-
+app.use('/api/v1/items', items)
 
 
 process.on('unhandledrejection', (err, promise) => {
