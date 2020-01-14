@@ -30,7 +30,6 @@ exports.login = async (req, res, next) => {
 
     try {
         const { email, password } = req.body;
-        console.log("i'm loggin in")
         //check email and passsword
         if (!email || !password) {
             return res.status(400).json({
