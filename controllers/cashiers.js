@@ -1,14 +1,15 @@
 const Cashier = require("../models/Cashier")
 
-//  @desc Test get route
+//  @desc get all cashiers
 //  @route GET /api/v1/cashiers
 //  @access Public
 
 exports.getCashiers = async (req, res, next) => {
     try {
+        const cashiers = await Cashier.find({})
         res.status(200).json({
             success: true,
-            data: "Your get works just fine"
+            data: cashiers
         });
     } catch (error) {
         res.status(400).json({
@@ -37,5 +38,30 @@ exports.createCashier = async (req, res, next) => {
             success: false,
             error: error.message
         })
+    }
+}
+
+//  @desc Get a single cashier
+//  @route GET /api/v1/cashiers/:id
+//  @access Public
+
+exports.getCashier = async (req, res, next) => {
+    try {
+        const aCashier = await Cashier.findById(req.params.id)
+        if (!aCashier) {
+            return res.status(400).success({
+                success: false
+            })
+        }
+        res.status(200).json({
+            success: true,
+            data: aCashier
+        })
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            msg: error.message
+        })
+
     }
 }
