@@ -12,6 +12,7 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
   //current login state to check what state is the user in ( logged in - logged out)
   LoginState = true;
+  error: string = null;
 
   constructor(private authService: AuthService) { }
 
@@ -29,20 +30,23 @@ export class AuthComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
+    const fullName = form.value.fullName;
     //check if we are logging in or singing up and act on it
     if (this.LoginState) {
       //todo login..
     }
     else {
       //calling the authservice with subscribing to it to access the sign up method
-      this.authService.signup(email, password).subscribe(resData => {
-        console.log(resData);
-      }, error => {
-        console.log(error);
-      }
-      );
+      this.authService.signup(email, password, fullName).subscribe(resData => {
 
-      form.reset();
+
+      }, error => {
+        console.log(error)
+        this.error = error.error.msg
+      }
+      )
+
+      // form.reset();
     }
   }
 }
