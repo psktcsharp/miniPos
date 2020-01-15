@@ -31,21 +31,26 @@ export class AuthComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     const fullName = form.value.fullName;
+
+
     //check if we are logging in or singing up and act on it
     if (this.LoginState) {
-      //todo login..
-    }
-    else {
-      //calling the authservice with subscribing to it to access the sign up method
-      this.authService.signup(email, password, fullName).subscribe(resData => {
-
-
+      this.authService.login(email, password).subscribe(resData => {
+        console.log(resData)
       }, error => {
         console.log(error)
         this.error = error.error.msg
       }
       )
-
+    }
+    else {
+      //calling the authservice with subscribing to it to access the sign up method
+      this.authService.signup(email, password, fullName).subscribe(resData => {
+      }, error => {
+        console.log(error)
+        this.error = error.error.msg
+      }
+      )
       // form.reset();
     }
   }
