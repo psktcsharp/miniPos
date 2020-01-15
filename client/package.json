@@ -1,0 +1,11 @@
+{
+  "name": "angularclient",
+  "version": "1.0.0",
+  "description": "angular front end for mini pos project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ammar Alamami",
+  "license": "ISC"
+}
