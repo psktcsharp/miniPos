@@ -10,10 +10,10 @@
                 <input type="password" id="password" class="form-control">
             </div>
             <div>
-                <button class="btn btn-primary">Sign Up</button>
-            </div>
-            <div>
-                <button class="btn btn-primary">Login</button>
+                <button class="btn btn-primary" type="submit">{{LoginState ? 'Login' : 'Sign up'}}</button> |
+                <!-- Attach the switchState to the button -->
+                <button class="btn btn-primary" type="button"
+                    (click)="onSwitchState()">{{LoginState ? 'Sign up' : 'Go To Login'}}</button>
             </div>
         </form>
     </div>
