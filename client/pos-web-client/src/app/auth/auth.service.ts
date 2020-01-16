@@ -12,6 +12,9 @@ interface AuthResponseData {
     success: boolean
     aToken: String
     msg: string
+    id: string
+    fullName: string
+    email: string
 }
 @Injectable({
     providedIn: 'root'
@@ -32,11 +35,7 @@ export class AuthService {
 
         }).pipe(catchError(this.handleError), tap(resData => {
             const expirationDate = new Date(new Date().getTime() + 60000)
-            const cashier = new Cashier(
-                resData.email,
-                resData.id,
-                resData.aToken,
-                expirationDate);
+            const cashier = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
         }));
     }
     handleError(handleError: any): import("rxjs").OperatorFunction<AuthResponseData, any> {

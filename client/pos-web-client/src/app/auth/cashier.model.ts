@@ -1,5 +1,5 @@
 export class Cashier {
-    constructor(public email: string, public id: string, private _token: string, private _tokenExpirationDate: Date) { }
+    constructor(public fullName: string, public email: string, public id: string, private _token: String, private _tokenExpirationDate: Date) { }
     //check if token is valid
     get token() {
         //return null if token is not there or expired
