@@ -92,6 +92,7 @@ const aToeknResponse = (cashier, statuscode, res) => {
     res.status(statuscode)
         .cookie('token', aToken, options)
         .json({
+            cashier: cashier,
             success: true, aToken
         })
 }

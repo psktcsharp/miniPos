@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { EmailValidator } from '@angular/forms'
-import { Subject } from 'rxjs'
+import { throwError, Subject } from 'rxjs'
 import { Cashier } from './cashier.model'
+import { catchError, tap } from 'rxjs/operators';
 
 
 // interface with all expected return data from the sign up response 
@@ -29,7 +30,17 @@ export class AuthService {
             password: password,
             fullName: fullName
 
-        })
+        }).pipe(catchError(this.handleError), tap(resData => {
+            const expirationDate = new Date(new Date().getTime() + 60000)
+            const cashier = new Cashier(
+                resData.email,
+                resData.id,
+                resData.aToken,
+                expirationDate);
+        }));
+    }
+    handleError(handleError: any): import("rxjs").OperatorFunction<AuthResponseData, any> {
+        throw new Error("Method not implemented.")
     }
     //send the login 
     login(email: string, password: string) {
