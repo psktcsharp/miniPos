@@ -4,6 +4,7 @@ import { EmailValidator } from '@angular/forms'
 import { throwError, Subject } from 'rxjs'
 import { Cashier } from './cashier.model'
 import { catchError, tap } from 'rxjs/operators';
+import { error } from 'protractor'
 
 
 // interface with all expected return data from the sign up response 
@@ -33,19 +34,27 @@ export class AuthService {
             password: password,
             fullName: fullName
 
-        }).pipe(catchError(this.handleError), tap(resData => {
+        }).pipe(catchError(errorRes => {
+            return throwError(errorRes)
+        }), tap(resData => {
             const expirationDate = new Date(new Date().getTime() + 60000)
             const cashier = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
+            this.cashier.next(cashier);
         }));
     }
-    handleError(handleError: any): import("rxjs").OperatorFunction<AuthResponseData, any> {
-        throw new Error("Method not implemented.")
-    }
+
     //send the login 
     login(email: string, password: string) {
         return this.http.post<AuthResponseData>('http://localhost:8080/api/v1/auth/login', {
             email: email,
             password: password
-        })
+        }).pipe(catchError(errorRes => {
+            return throwError(errorRes)
+        }), tap(resData => {
+            const expirationDate = new Date(new Date().getTime() + 60000)
+            const cashier = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
+            this.cashier.next(cashier);
+        }));
     }
 }
+
