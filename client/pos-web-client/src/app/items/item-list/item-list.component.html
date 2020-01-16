@@ -1,1 +1,7 @@
 <p>item-list works!</p>
+<button (click)="getItems()">Get Items</button>
+<ul>
+    <li *ngFor="let item of itemsList" [class.selected]="item === selectedItem" (click)="onSelect(hero)">
+        <span>{{item.name}}</span> {{item.price}}
+    </li>
+</ul>

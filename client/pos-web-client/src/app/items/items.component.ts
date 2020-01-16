@@ -18,6 +18,7 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
   }
   onAddItem() {
+    const itemList = []
     const newItem = new Item(this.nameInputRef.nativeElement.value
       , this.priceInputRef.nativeElement.value, this.imgInputRef.nativeElement.value, Boolean(this.availableInputRef.nativeElement.value))
     this.itemAdded.emit(newItem)
