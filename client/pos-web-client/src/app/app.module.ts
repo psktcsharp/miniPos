@@ -6,13 +6,15 @@ import { AuthComponent } from './auth/auth.component';
 import { AppRoutingModule } from './app-routing-module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
+import { ItemsComponent } from './items/items.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    HeaderComponent
+    HeaderComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

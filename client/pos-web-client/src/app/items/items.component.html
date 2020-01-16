@@ -1,0 +1,31 @@
+<h2>Add a new Item : </h2>
+<div class="row">
+    <form>
+        <div class="row">
+
+            <div class="col-sm-5 form-group">
+                <label for="name">Item Name :</label>
+                <input type="text" id="name" class="form-control" #nameInput>
+            </div>
+            <div class="col-sm-5 form-group">
+                <label for="price">Item Price :</label>
+                <input type="number" id="price" class="form-control" #priceInput>
+            </div>
+            <div class="col-sm-5 form-group">
+                <label for="img">Item Image :</label>
+                <input type="file" id="img" class="form-control" #imgInput>
+            </div>
+            <div class="col-sm-5 form-group">
+                <label for="available">Item Availability :</label>
+                <input type="checkbox" id="available" class="form-control" #availableInput>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button type="submit" id="saveButton" class="btn btn-success" (click)="onAddItem()">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
