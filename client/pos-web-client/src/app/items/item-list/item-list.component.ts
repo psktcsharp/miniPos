@@ -12,6 +12,7 @@ export class ItemListComponent implements OnInit {
   constructor(private dbService: DatabaseService) { }
 
   ngOnInit() {
+    this.getItems()
   }
   getItems() {
     this.dbService.getItemsFromDb().subscribe(resData => {
