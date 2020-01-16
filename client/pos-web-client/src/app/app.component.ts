@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pos-web-client';
+  LoadedPath = 'sell'
+  onNavigate(selectedPath: string) {
+    this.LoadedPath = selectedPath;
+  }
 }
