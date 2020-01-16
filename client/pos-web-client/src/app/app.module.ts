@@ -7,6 +7,8 @@ import { AppRoutingModule } from './app-routing-module';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { ItemsComponent } from './items/items.component';
+import { ItemListComponent } from './items/item-list/item-list.component';
+
 
 
 @NgModule({
@@ -14,7 +16,8 @@ import { ItemsComponent } from './items/items.component';
     AppComponent,
     AuthComponent,
     HeaderComponent,
-    ItemsComponent
+    ItemsComponent,
+    ItemListComponent
   ],
   imports: [
     BrowserModule,

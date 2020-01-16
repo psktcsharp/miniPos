@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { Item } from '../shared/item.model';
 import { DatabaseService } from '../helpers/dbHelper'
+import { HttpClient } from '@angular/common/http'
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
@@ -12,18 +13,23 @@ export class ItemsComponent implements OnInit {
   @ViewChild('imgInput', { static: false }) imgInputRef: ElementRef;
   @ViewChild('availableInput', { static: false }) availableInputRef: ElementRef;
   itemAdded = new EventEmitter<Item>()
-  constructor() { }
+  constructor(private dbService: DatabaseService) { }
 
   ngOnInit() {
   }
   onAddItem() {
     const newItem = new Item(this.nameInputRef.nativeElement.value
-      , this.priceInputRef.nativeElement.value, this.imgInputRef.nativeElement.value, this.availableInputRef.nativeElement.value)
+      , this.priceInputRef.nativeElement.value, this.imgInputRef.nativeElement.value, Boolean(this.availableInputRef.nativeElement.value))
     this.itemAdded.emit(newItem)
-    console.log(newItem)
+    console.log(typeof newItem.available)
     // addForm.reset();
-    const dbService = new DatabaseService();
-    dbService.saveItemToDb(newItem)
+    this.dbService.saveItemToDb(newItem).subscribe(resData => {
+      console.log(resData)
+
+    }, error => {
+      console.log(error)
+    }
+    )
   }
 
 
