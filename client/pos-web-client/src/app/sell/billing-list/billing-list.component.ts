@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-billing-list',
@@ -15,6 +16,14 @@ export class BillingListComponent implements OnInit {
   ngOnInit() {
 
   }
+  checkout(form: NgForm) {
+    console.log("checked out")
 
+    for (let el of this.soldItemsList) {
+      this.soldItemsList.pop()
+    }
+    this.soldItemsList.pop()
+    this.billTotal = 0;
+  }
 
 }
