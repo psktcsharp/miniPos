@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { EmailValidator } from '@angular/forms'
 import { throwError, Subject } from 'rxjs'
 import { Cashier } from './cashier.model'
 import { catchError, tap } from 'rxjs/operators';
 import { error } from 'protractor'
+import { Item } from '../shared/item.model'
 
 
 // interface with all expected return data from the sign up response 
@@ -38,8 +38,9 @@ export class AuthService {
             return throwError(errorRes)
         }), tap(resData => {
             const expirationDate = new Date(new Date().getTime() + 60000)
-            const cashier = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
-            this.cashier.next(cashier);
+            const cashierOut = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
+            const testItem = new Item("", 1, "", true, 1, 0)
+            this.cashier.next(cashierOut)
         }));
     }
 
@@ -52,9 +53,14 @@ export class AuthService {
             return throwError(errorRes)
         }), tap(resData => {
             const expirationDate = new Date(new Date().getTime() + 60000)
-            const cashier = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
-            this.cashier.next(cashier);
+            const cashierOut = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
+            console.log('from login auth', cashierOut)
+            this.cashier.next(cashierOut);
+            //Save to the local storage
+            localStorage.setItem("cashier", JSON.stringify(cashierOut))
+
         }));
     }
+
 }
 

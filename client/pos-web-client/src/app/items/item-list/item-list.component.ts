@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/helpers/dbHelper';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/shared/item.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-item-list',
@@ -13,14 +14,14 @@ export class ItemListComponent implements OnInit {
   soldItemsList: any;
   tempList: any;
   billTotal: number;
+  currentCashier: string;
 
-  constructor(private dbService: DatabaseService, private router: Router) { }
+  constructor(private dbService: DatabaseService, private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
     this.getItems()
     this.soldItemsList = [];
     this.tempList = [];
-
   }
   getItems() {
     this.dbService.getItemsFromDb().subscribe(resData => {
