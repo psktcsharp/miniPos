@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-billing-list',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./billing-list.component.css']
 })
 export class BillingListComponent implements OnInit {
-
+  @Input() soldItemsList: any;
+  @Input() itemsPathActive: boolean;
   constructor() { }
 
   ngOnInit() {
+
   }
+
 
 }

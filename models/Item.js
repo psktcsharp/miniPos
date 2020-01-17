@@ -24,6 +24,14 @@ const ItemSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    soldQuantity: {
+        type: Number,
+        default: 1
+    },
+    fakeQuantity: {
+        type: Number,
+        default: 1
     }
 });
 

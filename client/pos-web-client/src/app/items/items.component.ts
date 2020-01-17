@@ -18,11 +18,9 @@ export class ItemsComponent implements OnInit {
   ngOnInit() {
   }
   onAddItem() {
-    const itemList = []
     const newItem = new Item(this.nameInputRef.nativeElement.value
-      , this.priceInputRef.nativeElement.value, this.imgInputRef.nativeElement.value, Boolean(this.availableInputRef.nativeElement.value))
+      , this.priceInputRef.nativeElement.value, this.imgInputRef.nativeElement.value, Boolean(this.availableInputRef.nativeElement.value), 1, 1)
     this.itemAdded.emit(newItem)
-    console.log(typeof newItem.available)
     // addForm.reset();
     this.dbService.saveItemToDb(newItem).subscribe(resData => {
       console.log(resData)
