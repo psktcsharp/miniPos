@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class BillingListComponent implements OnInit {
   @Input() soldItemsList: any;
   @Input() itemsPathActive: boolean;
+  @Input() billTotal: number;
   constructor() { }
 
   ngOnInit() {

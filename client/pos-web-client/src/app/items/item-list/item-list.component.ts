@@ -12,6 +12,7 @@ export class ItemListComponent implements OnInit {
   itemsList: any;
   soldItemsList: any;
   tempList: any;
+  billTotal: number;
 
   constructor(private dbService: DatabaseService, private router: Router) { }
 
@@ -33,35 +34,24 @@ export class ItemListComponent implements OnInit {
   onSelect(item: Item) {
     item.soldQuantity = item.fakeQuantity
     item.id = item["_id"]
-
-
     if (this.soldItemsList.length === 0) {
-
-      console.log("ddddddddddd2")
       this.soldItemsList.push(item)
-
-
     } else {
       var dublicatedFound = 0;
       for (let elm of this.soldItemsList) {
         if (elm.id === item.id) {
-          console.log("double found")
           dublicatedFound = 1;
-
         }
-
       }
       if (dublicatedFound === 0)
         this.soldItemsList.push(item)
-
     }
 
-
-
-    //filter list
-
-
-
+    //calculating total
+    this.billTotal = 0;
+    for (let elm of this.soldItemsList) {
+      this.billTotal += (elm.price * elm.soldQuantity)
+    }
   }
   // isDirectoryPath() {
   //   return this.router.isActive('items', false); // <-- getting active route to be used later
