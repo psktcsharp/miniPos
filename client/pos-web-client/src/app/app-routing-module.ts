@@ -4,12 +4,14 @@ import { AppComponent } from './app.component';
 import { AuthComponent } from './auth/auth.component';
 import { ItemsComponent } from './items/items.component';
 import { SellComponent } from './sell/sell.component';
+import { ReportComponent } from './report/report.component'
 //register routes
 const appRoutes: Routes = [
     { path: '', component: AppComponent },
     { path: 'auth', component: AuthComponent },
     { path: 'items', component: ItemsComponent },
-    { path: 'sell', component: SellComponent }
+    { path: 'sell', component: SellComponent },
+    { path: 'report', component: ReportComponent }
 ]
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],
