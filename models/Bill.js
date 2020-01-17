@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const BillSchema = new mongoose.Schema({
     cashier: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Cashier"
+        ref: "Cashier",
+        required: true
     },
     soldItems: {
         type: [{
@@ -14,9 +15,14 @@ const BillSchema = new mongoose.Schema({
             createdAt: Date,
             soldQuantity: Number,
             fakeQuantity: Number
-        }]
+        }],
+        required: true
     },
-    total: Number,
+    total: {
+        type: Number,
+        required: true
+    }
+    ,
     createdAt: {
         type: Date,
         default: Date.now
