@@ -11,6 +11,7 @@ import { ItemListComponent } from './items/item-list/item-list.component';
 import { BillingListComponent } from './sell/billing-list/billing-list.component';
 import { SellComponent } from './sell/sell.component';
 import { ReportComponent } from './report/report.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ReportComponent } from './report/report.component';
     ItemListComponent,
     BillingListComponent,
     SellComponent,
-    ReportComponent
+    ReportComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

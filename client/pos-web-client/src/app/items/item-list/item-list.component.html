@@ -2,8 +2,9 @@
 
 
 <div class="container">
-    <div class="row m-3">
-        <div class="col m-3 md=3 shadow" *ngFor="let item of itemsList" [class.selected]="item === selectedItem">
+    <div class="row m-3 justify-content-center">
+        <div class="col m-3 md=3 shadow" style="max-width: 300px;" *ngFor="let item of itemsList"
+            [class.selected]="item === selectedItem">
             <div class="card m-3">
                 <div class="card-body w-50 h-50 ">
                     <img src="{{item.img}}" class="card-img-top" style="width: 200px;height: 200px;" alt="...">

@@ -1,32 +1,46 @@
-<h2>Add a new Item : </h2>
-<div class="row">
-    <form>
-        <div class="row">
+<div class="container-fluid shadow text-dark mb-3">
+    <div class="row align-middle ">
+        <div class="col  w-75 ">
+            <form class=" justify-content-center m-3 " novalidate>
+                <div class="row  ">
+                    <div class="form-row m-3 w-100 ">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationTooltip01">Item Name :</label>
+                            <input type="text" id="name" class="form-control" #nameInput>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationTooltip02">Item Price : </label>
+                            <input type="number" id="price" class="form-control" min="0" #priceInput>
+                        </div>
+                        <div class="col-md-4 mb-3">
 
-            <div class="col-sm-5 form-group">
-                <label for="name">Item Name :</label>
-                <input type="text" id="name" class="form-control" #nameInput>
-            </div>
-            <div class="col-sm-5 form-group">
-                <label for="price">Item Price :</label>
-                <input type="number" id="price" class="form-control" #priceInput>
-            </div>
-            <div class="col-sm-5 form-group">
-                <label for="img">Item Image Url :</label>
-                <input type="text" id="img" class="form-control" #imgInput>
-            </div>
-            <div class="col-sm-5 form-group">
-                <label for="available">Item Availability :</label>
-                <input type="checkbox" id="available" class="form-control" #availableInput>
-            </div>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="row justify-content-center">
+                    <div class="form-row m-3 w-100 ">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationTooltipUsername">Item Image Url :</label>
+                            <div class="input-group">
+
+                                <input type="text" id="img" class="form-control" #imgInput>
+
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationTooltip03">Item Availability :</label>
+                            <input type="checkbox" id="available" class="form-control" #availableInput>
+                        </div>
+                    </div>
+                </div>
+                <div class="row ml-2">
+                    <button type="submit" id="saveButton" class="btn btn-success mb-3" (click)="onAddItem()">
+                        Save Item
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
-
-</div>
-<div class="col xs-12">
-    <button type="submit" id="saveButton" class="btn btn-success" (click)="onAddItem()">
-        Save
-    </button>
+    </div>
 </div>
 <app-item-list></app-item-list>
