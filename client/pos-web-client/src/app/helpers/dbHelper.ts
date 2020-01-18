@@ -34,7 +34,7 @@ export class DatabaseService {
         return this.http.get<ItemListModel>('http://localhost:8080/api/v1/items/').pipe(catchError(errorRes => {
             return throwError(errorRes)
         }), tap(resData => {
-            console.log("inside items helper", resData)
+
         }));
     }
     saveBillToDb(billToSave: Bill) {
@@ -53,7 +53,7 @@ export class DatabaseService {
         return this.http.get<BillsListModel>('http://localhost:8080/api/v1/bills/').pipe(catchError(errorRes => {
             return throwError(errorRes)
         }), tap(resData => {
-            console.log("inside bills helper", resData)
+
         }));
     }
 }

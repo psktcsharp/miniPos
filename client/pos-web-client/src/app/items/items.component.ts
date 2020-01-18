@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, EventEmitter } from '@angular
 import { Item } from '../shared/item.model';
 import { DatabaseService } from '../helpers/dbHelper'
 import { HttpClient } from '@angular/common/http'
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
@@ -13,7 +14,7 @@ export class ItemsComponent implements OnInit {
   @ViewChild('imgInput', { static: false }) imgInputRef: ElementRef;
   @ViewChild('availableInput', { static: false }) availableInputRef: ElementRef;
   itemAdded = new EventEmitter<Item>()
-  constructor(private dbService: DatabaseService) { }
+  constructor(private dbService: DatabaseService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -30,7 +31,9 @@ export class ItemsComponent implements OnInit {
     }
     )
   }
-
+  isDirectoryPath() {
+    return this.router.isActive('items', false); // <-- getting active route to be used later
+  }
 
 
 }

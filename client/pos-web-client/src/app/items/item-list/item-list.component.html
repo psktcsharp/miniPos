@@ -18,7 +18,7 @@
     </li>
 </ul> -->
 <div>
-    <app-billing-list [soldItemsList]="soldItemsList" [billTotal]="billTotal">
+    <app-billing-list *ngIf="insideSell" [soldItemsList]="soldItemsList" [billTotal]="billTotal">
 
     </app-billing-list>
 </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from 'src/app/helpers/dbHelper';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from 'src/app/shared/item.model';
 import { AuthService } from 'src/app/auth/auth.service';
 
@@ -15,17 +15,22 @@ export class ItemListComponent implements OnInit {
   tempList: any;
   billTotal: number;
   currentCashier: string;
+  insideSell: boolean
 
-  constructor(private dbService: DatabaseService, private router: Router, private authService: AuthService) { }
+  constructor(private dbService: DatabaseService, private authService: AuthService, private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.getItems()
     this.soldItemsList = [];
     this.tempList = [];
+    this.activatedRoute.url.subscribe(url => {
+      this.insideSell = url[0].path === 'sell'
+    })
+
   }
   getItems() {
     this.dbService.getItemsFromDb().subscribe(resData => {
-      console.log("inside component", resData)
       this.itemsList = resData.data
     }, error => {
       console.log(error)
@@ -54,8 +59,6 @@ export class ItemListComponent implements OnInit {
       this.billTotal += (elm.price * elm.soldQuantity)
     }
   }
-  // isDirectoryPath() {
-  //   return this.router.isActive('items', false); // <-- getting active route to be used later
-  // }
+
 
 }
