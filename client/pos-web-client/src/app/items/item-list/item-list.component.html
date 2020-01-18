@@ -9,14 +9,15 @@
 
     </div>
 </div>
-<!-- <ul class="list-group">
-    <li class="list-group-item" *ngFor="let item of itemsList" [class.selected]="item === selectedItem"
-        (click)="onSelect(item)">
-        <span>{{item.name}}</span>
-        <span class="badge badge-success">{{item.price}}</span>
-        <input type="number" class="input" value="item.soldQuantity">
-    </li>
-</ul> -->
+
+<div class="card" style="width: 18rem;" *ngFor="let item of itemsList">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{item.name}}</h5>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <input type="number" class="input" [(ngModel)]="item.fakeQuantity">
+    </div>
+</div>
 <div>
     <app-billing-list *ngIf="insideSell" [soldItemsList]="soldItemsList" [billTotal]="billTotal">
 
