@@ -1,10 +1,8 @@
-<p>billing-list works!</p>
 <form #billForm="ngForm">
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of soldItemsList" [class.selected]="item === selectedItem"
             (click)="onSelect(item)">
             <span>{{item.name}}</span>
-            <span>id : {{item.id}}</span>
             <span class="badge badge-success">{{item.price}}$ * {{item.soldQuantity}}</span>
         </li>
         <li class="list-group-item">Total is : {{billTotal}}</li>

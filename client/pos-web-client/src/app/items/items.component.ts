@@ -19,7 +19,7 @@ export class ItemsComponent implements OnInit {
   }
   onAddItem() {
     const newItem = new Item(this.nameInputRef.nativeElement.value
-      , this.priceInputRef.nativeElement.value, this.imgInputRef.nativeElement.files[0].name, Boolean(this.availableInputRef.nativeElement.value), 1, 1)
+      , this.priceInputRef.nativeElement.value, this.imgInputRef.nativeElement.value, Boolean(this.availableInputRef.nativeElement.value), 1, 1)
     this.itemAdded.emit(newItem)
     // addForm.reset();
     this.dbService.saveItemToDb(newItem).subscribe(resData => {
