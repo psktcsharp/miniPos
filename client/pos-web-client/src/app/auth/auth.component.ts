@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
-
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -11,13 +11,19 @@ import { Router } from '@angular/router';
 })
 
 export class AuthComponent implements OnInit {
+
   //current login state to check what state is the user in ( logged in - logged out)
   LoginState = true;
   error: string = null;
+  data: any;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+
+
+  }
 
   ngOnInit() {
+    this.authService.currentData.subscribe(data => this.data = data);
   }
 
   onSwitchState() {
@@ -38,8 +44,8 @@ export class AuthComponent implements OnInit {
     if (this.LoginState) {
       this.authService.login(email, password).subscribe(resData => {
         //console.log(resData)
-
-        this.router.navigate(['/']);
+        this.authService.changeData({ isAuthenticated: true });
+        this.router.navigate(['/sell']);
       }, error => {
         console.log(error)
         this.error = error.error.msg

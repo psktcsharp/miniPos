@@ -6,6 +6,8 @@ import { catchError, tap } from 'rxjs/operators';
 import { error } from 'protractor'
 import { Item } from '../shared/item.model'
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+
 
 
 // interface with all expected return data from the sign up response 
@@ -24,8 +26,14 @@ interface AuthResponseData {
 export class AuthService {
     //store the cashier as a subject
     cashier = new Subject<Cashier>();
+
+    private dataSource = new BehaviorSubject({ isAuthenticated: false });
+    currentData = this.dataSource.asObservable();
     constructor(private http: HttpClient, private router: Router) {
 
+    }
+    changeData(data: any) {
+        this.dataSource.next(data);
     }
     //send a request to signup 
     signup(email: string, password: string, fullName: string) {
@@ -66,6 +74,7 @@ export class AuthService {
     //handle logout
     logout() {
         localStorage.clear();
+        this.changeData({ isAuthenticated: false });
         this.router.navigate(['/auth'])
     }
 

@@ -9,7 +9,10 @@
                 <li routerLinkActive="active"><a routerLink="/sell">Sell</a></li>
                 <li routerLinkActive="active"><a routerLink="/report">Reports</a></li>
                 <li routerLinkActive="active"><a routerLink="/auth">Login</a></li>
-                <li routerLinkActive="active"><a style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
+            </ul>
+            <ul class="nav navbar-right">
+                <li routerLinkActive="active"><a style="cursor: pointer;" (click)="onLogout()"
+                        *ngIf="isAuthenticated">Logout</a></li>
             </ul>
         </div>
     </div>
