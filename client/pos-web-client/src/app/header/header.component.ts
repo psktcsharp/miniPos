@@ -16,6 +16,11 @@ export class HeaderComponent implements OnInit {
     this.authService.currentData.subscribe(data =>
       this.isAuthenticated = data.isAuthenticated
     );
+
+    //ALWAYS LET ME IN FOR TESTING || REMOVE WHEN DONE !!!!
+    this.authService.changeData({ isAuthenticated: true });
+
+
     //auto login 
     this.authService.autoLogin()
     console.log(this.isAuthenticated)
