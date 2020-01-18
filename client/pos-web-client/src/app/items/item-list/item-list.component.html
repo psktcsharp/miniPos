@@ -1,20 +1,27 @@
 <button class="badge badge-success" (click)="getItems()">Refresh Items</button>
 
-<div class="card" style="width: 50rem;">
-    <div class="card" *ngFor="let item of itemsList" [class.selected]="item === selectedItem">
-        <div class="card-body">
-            <img src="{{item.img}}" class="card-img-top" alt="...">
-            <div class="col-sm-5"><button class="card-title"></button>
+
+<div class="container">
+    <div class="row m-3">
+        <div class="col m-3 md=3 shadow" *ngFor="let item of itemsList" [class.selected]="item === selectedItem">
+            <div class="card m-3">
+                <div class="card-body w-50 h-50">
+                    <img src="{{item.img}}" class="card-img-top" style="width: 150px;height: 200px;" alt="...">
+                    <div class="col-sm-5"><button class="card-title"></button>
+                    </div>
+                    <span style="font-size: xx-large; width:8rem;background-color: Green;"
+                        class="badge badge-danger">{{item.price}}$</span>
+                    <div> <input type="number" class="input" style="font-size: xx-large; width:8rem"
+                            [(ngModel)]="item.fakeQuantity" min="0"></div>
+                    <a class="btn btn-primary" (click)="onSelect(item)">{{item.name}}</a>
+                </div>
             </div>
-            <span style="font-size: xx-large; width:8rem;background-color: Green;"
-                class="badge badge-danger">{{item.price}}$</span>
-            <div> <input type="number" class="input" style="font-size: xx-large; width:8rem"
-                    [(ngModel)]="item.fakeQuantity" min="0"></div>
-            <a class="btn btn-primary" (click)="onSelect(item)">{{item.name}}</a>
         </div>
     </div>
-    <div>
-        <app-billing-list *ngIf="insideSell" [soldItemsList]="soldItemsList" [billTotal]="billTotal">
+</div>
 
-        </app-billing-list>
-    </div>
+<div>
+    <app-billing-list *ngIf="insideSell" [soldItemsList]="soldItemsList" [billTotal]="billTotal">
+
+    </app-billing-list>
+</div>
