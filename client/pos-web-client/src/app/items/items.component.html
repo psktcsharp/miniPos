@@ -1,5 +1,17 @@
 <div class="container-fluid shadow text-dark mb-3">
+
     <div class="row align-middle ">
+
+        <span class="badge badge-secondary w-100 ">
+            <h2 style="font-family: monospace;">Add new item</h2>
+        </span>
+        <img style="background-image: url('https://image.flaticon.com/icons/svg/748/748926.svg');
+        padding-left: 225px;
+        margin-top: 115px;
+        background-repeat: no-repeat;
+        background-size: 300px 100px;
+          " />
+
         <div class="col  w-75 ">
             <form class=" justify-content-center m-3 " novalidate>
                 <div class="row  ">
@@ -28,10 +40,15 @@
 
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationTooltip03">Item Availability :</label>
-                            <input type="checkbox" id="available" class="form-control" #availableInput>
+
+                        <div style="margin-left: 2em;">
+
+                            <input type="checkbox" class="form-control" id="available" #availableInput>
+                            <label for="available" class="input-group-text " id="">Item
+                                Availability</label>
+
                         </div>
+
                     </div>
                 </div>
                 <div class="row ml-2">
@@ -43,4 +60,5 @@
         </div>
     </div>
 </div>
+
 <app-item-list></app-item-list>

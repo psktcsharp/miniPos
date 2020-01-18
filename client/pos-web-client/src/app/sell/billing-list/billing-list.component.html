@@ -3,9 +3,10 @@
         <li class="list-group-item" *ngFor="let item of soldItemsList" [class.selected]="item === selectedItem"
             (click)="onSelect(item)">
             <span>{{item.name}}</span>
-            <span class="badge badge-success">{{item.price}}$ * {{item.soldQuantity}}</span>
+            <span class="badge badge-danger">{{item.price}}$ * {{item.soldQuantity}}</span>
         </li>
-        <li class="list-group-item">Total is : {{billTotal}}</li>
+        <li class="list-group-item">Total is : <span class="badge badge-success" style="font-size: 14pt;">{{billTotal}}
+                $</span></li>
         <li class="list-group-item"> <button type="reset" id="checkoutButton" class="btn btn-success"
                 (click)="checkout(billForm)">
                 Checkout

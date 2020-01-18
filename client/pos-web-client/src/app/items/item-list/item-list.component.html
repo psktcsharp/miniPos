@@ -1,30 +1,46 @@
 <button class="badge badge-success" (click)="getItems()">Refresh Items</button>
 
 
-<div class="container">
-    <div class="row m-3 justify-content-center">
-        <div class="col m-3 md=3 shadow" style="max-width: 300px;" *ngFor="let item of itemsList"
-            [class.selected]="item === selectedItem">
-            <div class="card m-3">
-                <div class="card-body w-50 h-50 ">
-                    <img src="{{item.img}}" class="card-img-top" style="width: 200px;height: 200px;" alt="...">
-                    <div class="col-sm-5">
-                    </div>
-                    <span style="font-size: xx-large; width:8rem;margin-left: 1em;"
-                        class="badge badge-primary">{{item.price}}$</span>
-                    <div> <input type="number" class="input"
-                            style="font-size: xx-large; width:8rem;margin-left: 1em; text-align: center; "
-                            [(ngModel)]="item.fakeQuantity" min="0"></div>
 
+
+<div class="container">
+
+</div>
+
+
+
+<div class="row">
+    <div class="col-sm-2">
+        <div>
+
+
+            <app-billing-list *ngIf="insideSell" [soldItemsList]="soldItemsList" [billTotal]="billTotal">
+
+            </app-billing-list>
+
+
+        </div>
+    </div>
+    <div class="col-sm-9">
+        <div class="row m-3 justify-content-center">
+            <div class="col m-3 md=3 shadow" style="max-width: 300px;" *ngFor="let item of itemsList"
+                [class.selected]="item === selectedItem">
+                <div class="card m-3">
+                    <div class="card-body w-50 h-50 ">
+                        <img src="{{item.img}}" class="card-img-top" style="width: 200px;height: 200px;" alt="...">
+                        <div class="col-sm-5">
+                        </div>
+                        <span style="font-size: xx-large; width:8rem;margin-left: 1em;"
+                            class="badge badge-primary">{{item.price}}$</span>
+                        <div> <input type="number" class="input"
+                                style="font-size: xx-large; width:8rem;margin-left: 1em; text-align: center; "
+                                [(ngModel)]="item.fakeQuantity" min="0"></div>
+
+                    </div>
+                    <button class="btn btn-primary pull-right" (click)="onSelect(item)">{{item.name}}</button>
                 </div>
-                <button class="btn btn-primary pull-right" (click)="onSelect(item)">{{item.name}}</button>
             </div>
         </div>
     </div>
-</div>
 
-<div>
-    <app-billing-list *ngIf="insideSell" [soldItemsList]="soldItemsList" [billTotal]="billTotal">
-
-    </app-billing-list>
 </div>
