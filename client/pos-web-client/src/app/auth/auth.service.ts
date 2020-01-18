@@ -78,5 +78,27 @@ export class AuthService {
         this.router.navigate(['/auth'])
     }
 
+    //auto login
+    autoLogin() {
+        const cashierData: {
+            email: string;
+            fullName: string;
+            _token: string;
+            id: string;
+            _tokenExpirationDate: string
+
+        } = JSON.parse(localStorage.getItem("cashier"))
+        if (!cashierData) {
+            return;
+        }
+        const LoadedCashier = new Cashier(cashierData.fullName, cashierData.email, cashierData.id, cashierData._token,
+            new Date(cashierData._tokenExpirationDate))
+
+        //check for valid token
+        if (LoadedCashier.token) {
+            this.changeData({ isAuthenticated: true });
+            this.cashier.next(LoadedCashier)
+        }
+    }
 }
 

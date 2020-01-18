@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
     this.authService.currentData.subscribe(data =>
       this.isAuthenticated = data.isAuthenticated
     );
-
+    //auto login 
+    this.authService.autoLogin()
     console.log(this.isAuthenticated)
   }
   onLogout() {
