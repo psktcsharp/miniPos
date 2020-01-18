@@ -5,6 +5,7 @@ import { Cashier } from './cashier.model'
 import { catchError, tap } from 'rxjs/operators';
 import { error } from 'protractor'
 import { Item } from '../shared/item.model'
+import { Router } from '@angular/router';
 
 
 // interface with all expected return data from the sign up response 
@@ -23,7 +24,7 @@ interface AuthResponseData {
 export class AuthService {
     //store the cashier as a subject
     cashier = new Subject<Cashier>();
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private router: Router) {
 
     }
     //send a request to signup 
@@ -60,6 +61,12 @@ export class AuthService {
             localStorage.setItem("cashier", JSON.stringify(cashierOut))
 
         }));
+    }
+
+    //handle logout
+    logout() {
+        localStorage.clear();
+        this.router.navigate(['/auth'])
     }
 
 }
