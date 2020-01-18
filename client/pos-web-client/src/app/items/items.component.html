@@ -12,21 +12,21 @@
                 <input type="number" id="price" class="form-control" #priceInput>
             </div>
             <div class="col-sm-5 form-group">
-                <label for="img">Item Image :</label>
-                <input type="file" id="img" class="form-control" #imgInput>
+                <label for="img">Item Image Url :</label>
+                <input type="text" id="img" class="form-control" #imgInput>
             </div>
             <div class="col-sm-5 form-group">
                 <label for="available">Item Availability :</label>
                 <input type="checkbox" id="available" class="form-control" #availableInput>
             </div>
-            <div class="row">
-                <div class="col-xs-12">
-                    <button type="submit" id="saveButton" class="btn btn-success" (click)="onAddItem()">
-                        Save
-                    </button>
-                </div>
-            </div>
+
         </div>
     </form>
+
+</div>
+<div class="col xs-12">
+    <button type="submit" id="saveButton" class="btn btn-success" (click)="onAddItem()">
+        Save
+    </button>
 </div>
 <app-item-list></app-item-list>
