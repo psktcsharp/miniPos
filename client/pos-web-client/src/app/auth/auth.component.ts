@@ -25,7 +25,9 @@ export class AuthComponent implements OnInit {
   ngOnInit() {
     this.authService.currentData.subscribe(data => this.data = data);
   }
-
+  onHandleError() {
+    this.error = null;
+  }
   onSwitchState() {
     this.LoginState = !this.LoginState;
   }

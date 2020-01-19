@@ -12,6 +12,7 @@ import { BillingListComponent } from './sell/billing-list/billing-list.component
 import { SellComponent } from './sell/sell.component';
 import { ReportComponent } from './report/report.component';
 import { HomeComponent } from './home/home.component';
+import { AlertComponent } from './shared/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HomeComponent } from './home/home.component';
     BillingListComponent,
     SellComponent,
     ReportComponent,
-    HomeComponent
+    HomeComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
