@@ -30,6 +30,7 @@ export class ItemListComponent implements OnInit {
 
   }
   getItems() {
+    console.log("*SENDING A REQUEST TO GET ALL ITEMS*")
     this.dbService.getItemsFromDb().subscribe(resData => {
       this.itemsList = resData.data
     }, error => {

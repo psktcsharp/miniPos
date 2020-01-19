@@ -12,14 +12,15 @@ export class AuthGuard implements CanActivate, OnInit {
     }
     activeState: boolean
     constructor(private authService: AuthService, private router: Router) {
+        console.log("*AUTHGUARD CHECKING IF WE ARE HAVE ACCESS*")
         this.authService.cashier.subscribe(cashier => {
-            console.log("inside guard intit")
             this.activeState = !!cashier;
         })
 
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
         boolean | UrlTree | Promise<boolean | UrlTree> | Observable<boolean | UrlTree> {
+        console.log("*AUTHGUARD GETTING CAN ACTIVE STATE*")
 
 
 

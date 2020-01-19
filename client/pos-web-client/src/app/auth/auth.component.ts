@@ -45,17 +45,21 @@ export class AuthComponent implements OnInit {
     this.isLoading = true;
     //check if we are logging in or singing up and act on it
     if (this.LoginState) {
+      console.log("*SENDING A LOGIN REQUEST TO THE SERVER*")
       this.authService.login(email, password).subscribe(resData => {
         this.authService.changeData({ isAuthenticated: true });
         this.router.navigate(['/']);
       }, error => {
         console.log(error)
+        this.isLoading = false;
         this.error = error.error.msg
+        this.router.navigate(['/auth']);
       }
       )
     }
     else {
       //calling the authservice with subscribing to it to access the sign up method
+      console.log("*SENDING A SIGN UP REQUEST TO THE SERVER*")
       this.authService.signup(email, password, fullName).subscribe(resData => {
         this.authService.changeData({ isAuthenticated: true });
         this.isLoading = false;

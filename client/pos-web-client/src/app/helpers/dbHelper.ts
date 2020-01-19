@@ -23,6 +23,7 @@ export class DatabaseService {
     constructor(private http: HttpClient) {
     }
     saveItemToDb(itemToSave: Item) {
+        console.log("*SENDING A REQUEST TO SAVE A NEW ITEM*")
         //subscribe in auth component 
         return this.http.post<Item>('http://localhost:8080/api/v1/items/', {
             name: itemToSave.name,
@@ -44,6 +45,7 @@ export class DatabaseService {
         }));
     }
     saveBillToDb(billToSave: Bill) {
+        console.log("*SENDING A REQUEST SAVE A NEW BILL*")
         return this.http.post<Item>('http://localhost:8080/api/v1/bills/', {
             cashier: billToSave.cashier,
             soldItems: billToSave.soldItems,
@@ -56,6 +58,7 @@ export class DatabaseService {
         }));
     }
     getBillsFromDb() {
+        console.log("*SENDING A REQUEST TO GET ALL BILLS*")
         return this.http.get<BillsListModel>('http://localhost:8080/api/v1/bills/').pipe(catchError(errorRes => {
             return throwError(errorRes)
         }), tap(resData => {
@@ -63,6 +66,7 @@ export class DatabaseService {
         }));
     }
     sendMail(html: string) {
+        console.log("*SENDING A REQUEST SEND AN EMAIL*")
         return this.http.post<EmailResponse>('http://localhost:8080/sendmail', {
             cashierMail: JSON.parse(localStorage.getItem("cashier")).email,
             html: html,

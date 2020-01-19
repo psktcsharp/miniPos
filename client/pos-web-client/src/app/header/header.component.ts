@@ -15,8 +15,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.authService.currentData.subscribe(data =>
       this.isAuthenticated = data.isAuthenticated
-    );
 
+    );
+    this.isAuthenticated = !!localStorage.getItem("cashierOut")
     //ALWAYS LET ME IN FOR TESTING || REMOVE WHEN DONE !!!!
     // this.authService.changeData({ isAuthenticated: true });
 

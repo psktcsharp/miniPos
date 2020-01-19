@@ -59,6 +59,7 @@ export class AuthService {
             email: email,
             password: password
         }).pipe(catchError(errorRes => {
+            this.router.navigate(['/']);
             return throwError(errorRes)
         }), tap(resData => {
             const expirationDate = new Date(new Date().getTime() + 60000)
@@ -72,6 +73,7 @@ export class AuthService {
 
     //handle logout
     logout() {
+        console.log("*CLEARING LOCALSTORAGE*")
         localStorage.removeItem("cashierOut")
         this.changeData({ isAuthenticated: false });
         this.router.navigate(['/auth'])
@@ -79,6 +81,7 @@ export class AuthService {
 
     //auto login
     autoLogin() {
+        console.log("*AUTOLOGIN IS CHECKING*")
         const cashierData: {
             email: string;
             fullName: string;
