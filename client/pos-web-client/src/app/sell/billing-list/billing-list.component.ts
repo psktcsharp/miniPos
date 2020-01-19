@@ -25,14 +25,10 @@ export class BillingListComponent implements OnInit, OnDestroy {
   ngOnInit() {
   }
   checkout(form: NgForm) {
-
-    console.log(JSON.parse(localStorage.getItem('cashier')))
-
     //saving bill to database
     const newBill = new Bill(JSON.parse(localStorage.getItem('cashier')).id, this.soldItemsList, this.billTotal, new Date())
     this.billAdded.emit(newBill)
     this.dbService.saveBillToDb(newBill).subscribe(resData => {
-      console.log(resData)
       console.log("save success")
     }, error => {
       console.log(error)

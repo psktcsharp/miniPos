@@ -43,7 +43,6 @@ export class AuthComponent implements OnInit {
     //check if we are logging in or singing up and act on it
     if (this.LoginState) {
       this.authService.login(email, password).subscribe(resData => {
-        //console.log(resData)
         this.authService.changeData({ isAuthenticated: true });
         this.router.navigate(['/sell']);
       }, error => {

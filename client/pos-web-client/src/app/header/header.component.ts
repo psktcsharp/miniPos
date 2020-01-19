@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
 
     //auto login 
     this.authService.autoLogin()
-    console.log(this.isAuthenticated)
   }
   onLogout() {
     this.authService.changeData({ isAuthenticated: false });

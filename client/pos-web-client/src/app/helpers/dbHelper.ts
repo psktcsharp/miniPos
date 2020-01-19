@@ -6,10 +6,16 @@ import { Injectable } from '@angular/core';
 import { ItemListModel } from '../shared/itemList.model';
 import { Bill } from '../shared/bill.model';
 import { BillsListModel } from '../shared/billsList.model';
+interface EmailResponse {
+    success: boolean
+    data: String
+}
 @Injectable({
     providedIn: 'root'
 })
+
 export class DatabaseService {
+
     item = new Subject<Item>();
     itemList = new Subject<ItemListModel>();
     billsList = new Subject<BillsListModel>();
@@ -56,4 +62,16 @@ export class DatabaseService {
 
         }));
     }
+    sendMail(html: string) {
+        return this.http.post<EmailResponse>('http://localhost:8080/sendmail', {
+            cashierMail: JSON.parse(localStorage.getItem("cashier")).email,
+            html: html,
+        }).pipe(catchError(errorRes => {
+            return throwError(errorRes)
+        }), tap(resData => {
+            this.bill.next(null);
+        }));
+    }
+
+
 }
