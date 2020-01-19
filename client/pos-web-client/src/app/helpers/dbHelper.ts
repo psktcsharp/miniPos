@@ -68,7 +68,7 @@ export class DatabaseService {
     sendMail(html: string) {
         console.log("*SENDING A REQUEST SEND AN EMAIL*")
         return this.http.post<EmailResponse>('http://localhost:8080/sendmail', {
-            cashierMail: JSON.parse(localStorage.getItem("cashier")).email,
+            cashierMail: JSON.parse(localStorage.getItem("cashierOut")).email,
             html: html,
         }).pipe(catchError(errorRes => {
             return throwError(errorRes)
