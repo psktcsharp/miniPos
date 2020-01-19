@@ -44,7 +44,7 @@ export class AuthComponent implements OnInit {
     if (this.LoginState) {
       this.authService.login(email, password).subscribe(resData => {
         this.authService.changeData({ isAuthenticated: true });
-        this.router.navigate(['/sell']);
+        this.router.navigate(['/']);
       }, error => {
         console.log(error)
         this.error = error.error.msg
@@ -54,6 +54,8 @@ export class AuthComponent implements OnInit {
     else {
       //calling the authservice with subscribing to it to access the sign up method
       this.authService.signup(email, password, fullName).subscribe(resData => {
+        this.authService.changeData({ isAuthenticated: true });
+        this.router.navigate(['/']);
       }, error => {
         console.log(error)
         this.error = error.error.msg

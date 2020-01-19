@@ -48,7 +48,7 @@ export class AuthService {
         }), tap(resData => {
             const expirationDate = new Date(new Date().getTime() + 60000)
             const cashierOut = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
-            const testItem = new Item("", 1, "", true, 1, 0)
+            localStorage.setItem("cashier", JSON.stringify(cashierOut))
             this.cashier.next(cashierOut)
         }));
     }
