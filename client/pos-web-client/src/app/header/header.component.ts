@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
     );
 
     //ALWAYS LET ME IN FOR TESTING || REMOVE WHEN DONE !!!!
-    this.authService.changeData({ isAuthenticated: true });
+    // this.authService.changeData({ isAuthenticated: true });
 
 
     //auto login 

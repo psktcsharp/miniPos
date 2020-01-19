@@ -6,13 +6,23 @@ import { ItemsComponent } from './items/items.component';
 import { SellComponent } from './sell/sell.component';
 import { ReportComponent } from './report/report.component'
 import { HomeComponent } from './home/home.component';
+import { AuthGuard } from './auth/auth.guard';
 //register routes
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'auth', component: AuthComponent },
-    { path: 'items', component: ItemsComponent },
-    { path: 'sell', component: SellComponent },
-    { path: 'report', component: ReportComponent }
+    {
+        path: 'items', component: ItemsComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'sell', component: SellComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'report', component: ReportComponent,
+        canActivate: [AuthGuard]
+    }
 ]
 @NgModule({
     imports: [RouterModule.forRoot(appRoutes)],

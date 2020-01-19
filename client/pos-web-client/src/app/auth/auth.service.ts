@@ -48,7 +48,7 @@ export class AuthService {
         }), tap(resData => {
             const expirationDate = new Date(new Date().getTime() + 60000)
             const cashierOut = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
-            localStorage.setItem("cashier", JSON.stringify(cashierOut))
+            localStorage.setItem("cashierOut", JSON.stringify(cashierOut))
             this.cashier.next(cashierOut)
         }));
     }
@@ -65,14 +65,14 @@ export class AuthService {
             const cashierOut = new Cashier(resData.fullName, resData.email, resData.id, resData.aToken, expirationDate)
             this.cashier.next(cashierOut);
             //Save to the local storage
-            localStorage.setItem("cashier", JSON.stringify(cashierOut))
+            localStorage.setItem("cashierOut", JSON.stringify(cashierOut))
 
         }));
     }
 
     //handle logout
     logout() {
-        localStorage.clear();
+        localStorage.removeItem("cashierOut")
         this.changeData({ isAuthenticated: false });
         this.router.navigate(['/auth'])
     }
