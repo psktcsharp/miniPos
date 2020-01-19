@@ -11,6 +11,7 @@ import { AuthService } from '../../auth/auth.service'
   styleUrls: ['./billing-list.component.css']
 })
 export class BillingListComponent implements OnInit, OnDestroy {
+  error: string = null;
   ngOnDestroy(): void {
 
   }
@@ -26,11 +27,13 @@ export class BillingListComponent implements OnInit, OnDestroy {
   }
   checkout(form: NgForm) {
     //saving bill to database
-    const newBill = new Bill(JSON.parse(localStorage.getItem('cashier')).id, this.soldItemsList, this.billTotal, new Date())
+    const newBill = new Bill(JSON.parse(localStorage.getItem('cashierOut')).id, this.soldItemsList, this.billTotal, new Date())
     this.billAdded.emit(newBill)
     this.dbService.saveBillToDb(newBill).subscribe(resData => {
       console.log("save success")
+      this.error = "A new bill has been saved with success ";
     }, error => {
+      this.error = "Sorry ! Couldn't save the bill at this time"
       console.log(error)
     }
     )
@@ -39,8 +42,12 @@ export class BillingListComponent implements OnInit, OnDestroy {
     for (let el of this.soldItemsList) {
       this.soldItemsList.pop()
     }
+
     this.soldItemsList.pop()
     this.billTotal = 0;
+  }
+  onHandleError() {
+    this.error = null;
   }
 
 }

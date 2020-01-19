@@ -1,11 +1,12 @@
-<form #billForm="ngForm">
+<form #billForm="ngForm" style="font-family: monospace; font-weight: bold;font-size: 22pt;">
+    <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let item of soldItemsList" [class.selected]="item === selectedItem"
             (click)="onSelect(item)">
             <span>{{item.name}}</span>
-            <span class="badge badge-danger">{{item.price}}$ * {{item.soldQuantity}}</span>
+            <span style="text-align: end;" class="badge badge-danger">{{item.price}}$ X {{item.soldQuantity}}</span>
         </li>
-        <li class="list-group-item">Total is : <span class="badge badge-success" style="font-size: 14pt;">{{billTotal}}
+        <li class="list-group-item">Total: <span class="badge badge-success" style="font-size: 18pt;">{{billTotal}}
                 $</span></li>
         <li class="list-group-item"> <button type="reset" id="checkoutButton" class="btn btn-success"
                 (click)="checkout(billForm)">
