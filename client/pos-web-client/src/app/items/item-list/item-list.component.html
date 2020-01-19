@@ -1,4 +1,4 @@
-<button class="badge badge-success" (click)="getItems()">Refresh Items</button>
+<button class="badge badge-success bg-info" (click)="getItems()">Refresh Items</button>
 
 
 
@@ -31,13 +31,13 @@
                         <div class="col-sm-5">
                         </div>
                         <span style="font-size: xx-large; width:8rem;margin-left: 1em;"
-                            class="badge badge-primary">{{item.price}}$</span>
+                            class="badge badge-secondary">{{item.price}}$</span>
                         <div> <input type="number" class="input"
                                 style="font-size: xx-large; width:8rem;margin-left: 1em; text-align: center; "
                                 [(ngModel)]="item.fakeQuantity" min="0"></div>
 
                     </div>
-                    <button class="btn btn-primary pull-right" (click)="onSelect(item)">{{item.name}}</button>
+                    <button class="btn btn-dark" (click)="onSelect(item)">{{item.name}}</button>
                 </div>
             </div>
         </div>

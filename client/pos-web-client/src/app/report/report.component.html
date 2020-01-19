@@ -1,55 +1,58 @@
-<div class="container-fluid m-5">
-    <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+<div class="card shadow" style="width: 50rem;  margin: 0 auto; /* Added */
+float: none; /* Added */
+margin-bottom: 10px; /* Added */">
+    <div class="container-fluid m-5">
+        <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
 
-    <div class="row">
-        <div class="col-sm-5">
-            <div class="row m-3 justify-content-center">
-                <div class="container ">
-                    <div class="alert alert-success" role="alert">
-                        Total today : {{totalToday}}
-                    </div>
-                    <div class="alert alert-warning " role="alert">
-                        Total overall : {{totalOverAll}}
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="row m-3 justify-content-center">
+                    <div class="container ">
+                        <div class="alert alert-success shadow" role="alert">
+                            Total today : {{totalToday}}
+                        </div>
+                        <div class="alert alert-warning shadow" role="alert">
+                            Total overall : {{totalOverAll}}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-2">
-            <img src="https://image.flaticon.com/icons/svg/885/885334.svg" style="
+            <div class="col-sm-2 ">
+                <img src="https://image.flaticon.com/icons/svg/885/885334.svg" style="
         background-repeat:no-repeat;
         size: 1em;
         background-position:bottom;
         max-width: 250px;
         opacity: 0.5;" /></div>
-        <!-- fancy looking button for sending an email -->
+            <!-- fancy looking button for sending an email -->
 
-        <div class="container">
-            <div class="row share-buttons">
-                <div class="col-md-8 col-md-offset-2 ">
-                    <ul>
-                        <li>
-                            <h1><img src="https://image.flaticon.com/icons/svg/888/888853.svg"></h1>
-                            <div class="button green" (click)="sendMail()">
-                                <i class="fa fa-vine"></i>
-                                <br>
-                                <button class="btn btn-light"> SEND</button>
+            <div class="container ">
+                <div class="row share-buttons">
+                    <div class="col-md-8 col-md-offset-2 ">
+                        <ul>
+                            <li>
+                                <h1><img src="https://image.flaticon.com/icons/svg/888/888853.svg"></h1>
+                                <div class="button green" (click)="sendMail()">
+                                    <i class="fa fa-vine"></i>
+                                    <br>
+                                    <button class="btn btn-light"> SEND</button>
 
-                            </div>
-                        </li>
-                        <li>
-                            <div style="text-align:center;" *ngIf="isLoading">
-                                <app-loading-spinner>
-                                </app-loading-spinner>
-                            </div>
-                        </li>
+                                </div>
+                            </li>
+                            <li>
+                                <div style="text-align:center;" *ngIf="isLoading">
+                                    <app-loading-spinner>
+                                    </app-loading-spinner>
+                                </div>
+                            </li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-
-
 
     <style>
         .share-buttons ul {
@@ -62,7 +65,7 @@
             width: 110px;
             height: 130px;
             float: left;
-            border: 1px solid #ccc;
+
             position: relative;
             transition: all .5s ease;
             overflow: hidden;
@@ -131,7 +134,7 @@
             color: #f06;
             border-bottom: 1px solid white;
             padding-bottom: 5px;
-            transition: border .5s ease;
+            transition: border .20s ease;
         }
 
         .share-buttons a:hover {
