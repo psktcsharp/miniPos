@@ -1,5 +1,5 @@
 <div class="container-fluid shadow text-dark mb-3">
-
+    <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
     <div class="row align-middle ">
 
         <span class="badge badge-secondary w-100 ">

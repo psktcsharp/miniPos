@@ -11,7 +11,7 @@ import { of } from 'rxjs';
 })
 
 export class AuthComponent implements OnInit {
-
+  isLoading = false;
   //current login state to check what state is the user in ( logged in - logged out)
   LoginState = true;
   error: string = null;
@@ -41,7 +41,8 @@ export class AuthComponent implements OnInit {
     const password = form.value.password;
     const fullName = form.value.fullName;
 
-
+    //change loading for spinner to appear
+    this.isLoading = true;
     //check if we are logging in or singing up and act on it
     if (this.LoginState) {
       this.authService.login(email, password).subscribe(resData => {
@@ -57,9 +58,11 @@ export class AuthComponent implements OnInit {
       //calling the authservice with subscribing to it to access the sign up method
       this.authService.signup(email, password, fullName).subscribe(resData => {
         this.authService.changeData({ isAuthenticated: true });
+        this.isLoading = false;
         this.router.navigate(['/']);
       }, error => {
         console.log(error)
+        this.isLoading = false;
         this.error = error.error.msg
       }
       )

@@ -13,6 +13,7 @@ import { SellComponent } from './sell/sell.component';
 import { ReportComponent } from './report/report.component';
 import { HomeComponent } from './home/home.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import { LoadingSpinnerComponent } from './shared/loadingSpinner/loadingSpinner.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AlertComponent } from './shared/alert/alert.component';
     SellComponent,
     ReportComponent,
     HomeComponent,
-    AlertComponent
+    AlertComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,

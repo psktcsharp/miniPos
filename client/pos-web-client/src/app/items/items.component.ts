@@ -14,6 +14,7 @@ export class ItemsComponent implements OnInit {
   @ViewChild('imgInput', { static: false }) imgInputRef: ElementRef;
   @ViewChild('availableInput', { static: false }) availableInputRef: ElementRef;
   itemAdded = new EventEmitter<Item>()
+  error: string = null;
   constructor(private dbService: DatabaseService, private router: Router) { }
   ngOnInit() {
   }
@@ -23,12 +24,15 @@ export class ItemsComponent implements OnInit {
     this.itemAdded.emit(newItem)
     // addForm.reset();
     this.dbService.saveItemToDb(newItem).subscribe(resData => {
-      console.log(resData)
-
+      this.error = `${newItem.name} has been saved successfully`;
     }, error => {
+      this.error = `${newItem.name} couldn't be saved, please try again`;
       console.log(error)
     }
     )
+  }
+  onHandleError() {
+    this.error = null;
   }
   isDirectoryPath() {
     return this.router.isActive('items', false); // <-- getting active route to be used later

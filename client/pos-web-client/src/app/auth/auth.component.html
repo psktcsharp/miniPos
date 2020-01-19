@@ -4,7 +4,10 @@
             <p>{{error}}</p>
         </div> -->
         <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
-        <form #authForm="ngForm">
+        <div *ngIf="isLoading" style="text-align: center;">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        <form #authForm="ngForm" *ngIf="!isLoading">
             <div *ngIf="!LoginState" class="form-group">
                 <label for="fullName">Full Name</label>
                 <input type="text" id="fullName" class="form-control" ngModel name="fullName" required>

@@ -14,7 +14,9 @@ export class ReportComponent implements OnInit {
   totalToday: number;
   totalOverAll: number;
   billsList: any;
-  htmlToSend: string
+  htmlToSend: string;
+  isLoading = false;
+  error: string = null;
 
   constructor(private dbService: DatabaseService, private http: HttpClient) {
     this.totalToday = 0;
@@ -22,6 +24,7 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
 
     this.dbService.getBillsFromDb().subscribe(resData => {
       this.billsList = resData.data
@@ -36,9 +39,12 @@ export class ReportComponent implements OnInit {
       console.log(error)
     }
     )
+    this.isLoading = false;
   }
 
-  sendMail() {
+  async sendMail() {
+
+
     try {
       this.htmlToSend = (`<table style="height: 113px; width: 346px; border-color: green; border: 1px solid black;">
       <tbody>
@@ -56,10 +62,23 @@ export class ReportComponent implements OnInit {
       <blockquote>
       <p>Sent from MIniPosWeb @ ${new Date()}</p>
       </blockquote>`)
-      this.dbService.sendMail(this.htmlToSend).subscribe()
+      this.isLoading = true;
+      setTimeout(() => {
+
+        this.dbService.sendMail(this.htmlToSend).subscribe()
+
+        this.isLoading = false;
+        this.error = "Report Email has been sent successfully "
+      }, 2000);
     } catch (error) {
+      this.error = "Can't send the email at this time"
       console.log(error)
     }
+
   }
 
+
+  onHandleError() {
+    this.error = null;
+  }
 }

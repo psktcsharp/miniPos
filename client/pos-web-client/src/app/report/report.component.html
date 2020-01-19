@@ -1,4 +1,6 @@
 <div class="container-fluid m-5">
+    <app-alert [message]="error" *ngIf="error" (close)="onHandleError()"></app-alert>
+
     <div class="row">
         <div class="col-sm-5">
             <div class="row m-3 justify-content-center">
@@ -12,123 +14,129 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-2"> <img src="https://image.flaticon.com/icons/svg/885/885334.svg" style="
+        <div class="col-sm-2">
+            <img src="https://image.flaticon.com/icons/svg/885/885334.svg" style="
         background-repeat:no-repeat;
         size: 1em;
         background-position:bottom;
         max-width: 250px;
-        opacity: 0.6;" /></div>
-    </div>
-    <!-- fancy looking button for sending an email -->
+        opacity: 0.5;" /></div>
+        <!-- fancy looking button for sending an email -->
 
-    <div class="container ">
-        <div class="row share-buttons ">
-            <div class="col-md-8 col-md-offset-2 ">
-                <ul>
-                    <li>
-                        <h1><img src="https://image.flaticon.com/icons/svg/732/732026.svg"></h1>
-                        <div class="button green" (click)="sendMail()">
-                            <i class="fa fa-vine"></i>
-                            <br>
-                            <button class="btn btn-dark"> SEND</button>
+        <div class="container">
+            <div class="row share-buttons">
+                <div class="col-md-8 col-md-offset-2 ">
+                    <ul>
+                        <li>
+                            <h1><img src="https://image.flaticon.com/icons/svg/888/888853.svg"></h1>
+                            <div class="button green" (click)="sendMail()">
+                                <i class="fa fa-vine"></i>
+                                <br>
+                                <button class="btn btn-light"> SEND</button>
 
-                        </div>
-                    </li>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="text-align:center;" *ngIf="isLoading">
+                                <app-loading-spinner>
+                                </app-loading-spinner>
+                            </div>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 
-<style>
-    .share-buttons ul {
-        list-style: none;
-        margin: auto;
-        display: inline-block;
-    }
+    <style>
+        .share-buttons ul {
+            list-style: none;
+            margin: auto;
+            display: inline-block;
+        }
 
-    .share-buttons ul li {
-        width: 110px;
-        height: 130px;
-        float: left;
-        border: 1px solid #ccc;
-        position: relative;
-        transition: all .5s ease;
-        overflow: hidden;
-    }
+        .share-buttons ul li {
+            width: 110px;
+            height: 130px;
+            float: left;
+            border: 1px solid #ccc;
+            position: relative;
+            transition: all .5s ease;
+            overflow: hidden;
+        }
 
-    .share-buttons li h1 {
-        font-family: 'Dosis', sans-serif;
-        font-weight: normal;
-        text-align: center;
-        line-height: 70px;
-        font-size: 30px;
-        transition: all .5s ease;
-    }
+        .share-buttons li h1 {
+            font-family: 'Dosis', sans-serif;
+            font-weight: normal;
+            text-align: center;
+            line-height: 70px;
+            font-size: 30px;
+            transition: all .5s ease;
+        }
 
-    .share-buttons li:hover {
-        box-shadow: inset 0 0 10px #2D2D2D;
-    }
+        .share-buttons li:hover {
+            box-shadow: inset 0 0 10px rgb(163, 163, 163);
+        }
 
-    .share-buttons li:hover h1 {
-        transform: scale(.8) translateY(-5px);
-    }
+        .share-buttons li:hover h1 {
+            transform: scale(.8) translateY(-5px);
+        }
 
-    .share-buttons li:hover .button {
-        transform: translateY(0px);
-    }
+        .share-buttons li:hover .button {
+            transform: translateY(0px);
+        }
 
-    .share-buttons li .button {
-        height: 60px;
-        transform: translateY(25px);
-        text-align: center;
-        padding: 5px 10px;
-        padding-bottom: 50px;
-        color: white;
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-        background: #2D2D2D;
-        box-sizing: border-box;
-        transition: all .5s .5s ease;
-        line-height: 25px;
-        font-size: 15px;
-    }
+        .share-buttons li .button {
+            height: 60px;
+            transform: translateY(25px);
+            text-align: center;
+            padding: 5px 10px;
+            padding-bottom: 50px;
+            color: white;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            background: #2D2D2D;
+            box-sizing: border-box;
+            transition: all .5s .5s ease;
+            line-height: 25px;
+            font-size: 15px;
+        }
 
-    .share-buttons .button i {
-        font-size: 20px;
-    }
+        .share-buttons .button i {
+            font-size: 20px;
+        }
 
-    .share-buttons .button.blue {
-        background: #24C9FF;
-    }
+        .share-buttons .button.blue {
+            background: #24C9FF;
+        }
 
-    .share-buttons .button.pink {
-        background: #E12148;
-    }
+        .share-buttons .button.pink {
+            background: #E12148;
+        }
 
-    .share-buttons .button.green {
-        background: #71F264;
-    }
+        .share-buttons .button.green {
+            background: #71F264;
+        }
 
-    .share-buttons .button.red {
-        background: #D84337;
-    }
+        .share-buttons .button.red {
+            background: #D84337;
+        }
 
-    .share-buttons a {
-        text-decoration: none;
-        color: #f06;
-        border-bottom: 1px solid white;
-        padding-bottom: 5px;
-        transition: border .5s ease;
-    }
+        .share-buttons a {
+            text-decoration: none;
+            color: #f06;
+            border-bottom: 1px solid white;
+            padding-bottom: 5px;
+            transition: border .5s ease;
+        }
 
-    .share-buttons a:hover {
-        border-color: #111;
-        color: #f06;
-        border-bottom: 4px solid white;
-    }
-</style>
+        .share-buttons a:hover {
+            border-color: #111;
+            color: #f06;
+            border-bottom: 4px solid white;
+        }
+    </style>
